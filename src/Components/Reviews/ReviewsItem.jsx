@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovieReviews } from "../../services/api";
-import ReviewsList from "../Reviews/ReviewsList/ReviewsList";
+import ReviewsList from "./ReviewsItem/ReviewsList";
 import { reviewsList } from "./Reviews.module.css";
 
 export default class Reviews extends Component {

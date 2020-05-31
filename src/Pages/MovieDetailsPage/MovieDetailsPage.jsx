@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
 import { formatData } from "../../utils/helpers";
-import MovieDetails from "../../Components/MovieDetails/MovieDetails";
-import Cast from "../../Components/Cast/Cast";
-import Reviews from "../../Components/Reviews/Reviews";
+import MovieDetails from "../../components/MovieDetails/MovieDetails";
+import Cast from "../../components/Cast/Cast";
+import Reviews from "../../components/Reviews/ReviewsItem";
 
 export default class MovieDetailsPage extends Component {
   state = {

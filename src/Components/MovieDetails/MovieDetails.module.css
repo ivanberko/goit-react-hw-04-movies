@@ -1,5 +1,5 @@
 .movieCard {
-  padding: 10px;
+  padding: 20px;
   display: flex;
   border-bottom: 1px solid #ffffffad;
   box-shadow: 0px 10px 8px -8px #ffffffad;
@@ -33,7 +33,7 @@
   background-color: #fff;
   color: #212121;
   font-weight: 700;
-  margin-left: 10px;
+  margin-left: 20px;
   border-radius: 5px;
   padding: 4px;
 }

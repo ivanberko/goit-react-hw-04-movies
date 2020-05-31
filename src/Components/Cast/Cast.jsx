@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovieCast } from "../../services/api";
-import CastItem from "./CastList/CastItem";
+import CastItem from "./CastItem/CastItem";
 import { castList } from "./Cast.module.css";
 
 export default class Cast extends Component {

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovieTrending } from "../../services/api";
-import MoviesList from "../../Components/MoviesList/MoviesList";
+import MoviesList from "../../components/MoviesList/MoviesList";
 import { titleList } from "./HomePage.module.css";
 
 export default class HomePage extends Component {

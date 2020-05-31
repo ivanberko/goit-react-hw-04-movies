@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovieSearch } from "../../services/api";
-import MoviesList from "../../Components/MoviesList/MoviesList";
+import MoviesList from "../../components/MoviesList/MoviesList";
 
 export default class MoviesPage extends Component {
   state = {
