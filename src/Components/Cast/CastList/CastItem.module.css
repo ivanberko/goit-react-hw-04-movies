@@ -1,0 +1,19 @@
+.castItem {
+  width: 200px;
+  text-align: center;
+  border: 1px solid #fff;
+  padding: 4px;
+  margin-bottom: 10px;
+  box-shadow: inset 0px 0px 8px 1px #ffffffad;
+}
+
+.castPhoto {
+  margin: 0 auto;
+}
+
+.castNoPhoto {
+  margin: 0;
+  vertical-align: middle;
+  height: 100px;
+  line-height: 100px;
+}
