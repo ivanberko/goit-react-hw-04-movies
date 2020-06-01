@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { getPoster } from "../../utils/helpers";
 import {
   movieCard,
@@ -9,17 +9,19 @@ import {
   addInfo,
   addInfoLink,
   activeLink,
-  btnGoBack
+  btnGoBack,
+  titleMovie,
 } from "./MovieDetails.module.css";
 
 const MovieDetails = ({
-  id,
   title,
   release_date,
   overview,
   genres,
   vote_average,
   poster_path,
+  onGoBack,
+  match,
 }) => {
   const genresList = genres.map(({ id, name }) => (
     <span key={id} className={genreItem}>
@@ -27,29 +29,41 @@ const MovieDetails = ({
     </span>
   ));
   const releaseYear = new Date(Date.parse(release_date)).getFullYear();
-  const scorePercentage = vote_average * 10;
+
   return (
     <div>
-      <button type="button" className={btnGoBack}>&#9668; Go back</button>
+      <button type="button" className={btnGoBack} onClick={onGoBack}>
+        &#9668; Go back
+      </button>
       <section className={movieCard}>
-        <img src={getPoster(poster_path, "w300")} alt="" />
+        {poster_path && <img src={getPoster(poster_path, "w300")} alt="" />}
         <div className={movieDescription}>
-          <h2>
+          <h2 className={titleMovie}>
             {title} ({releaseYear})
           </h2>
-          <p>User Score: {scorePercentage}%</p>
-          <h4>Overview</h4>
+          <p>
+            Rating: <b>{vote_average}/10</b>
+          </p>
+          <h3>Overview</h3>
           <p>{overview}</p>
-          <h4>Genres</h4>
+          <h3>Genres</h3>
           <div>{genresList}</div>
         </div>
       </section>
       <section className={addInfo}>
-        <h4>Additional information</h4>
-        <NavLink to={`/movies/${id}/cast`} className={addInfoLink} activeClassName={activeLink}>
+        <h3>Additional information</h3>
+        <NavLink
+          to={`${match.url}/cast`}
+          className={addInfoLink}
+          activeClassName={activeLink}
+        >
           Cast
         </NavLink>
-        <NavLink to={`/movies/${id}/reviews`} className={addInfoLink} activeClassName={activeLink}>
+        <NavLink
+          to={`${match.url}/reviews`}
+          className={addInfoLink}
+          activeClassName={activeLink}
+        >
           Reviews
         </NavLink>
       </section>
@@ -69,7 +83,7 @@ MovieDetails.propTypes = {
     }).isRequired
   ).isRequired,
   vote_average: PropTypes.number.isRequired,
-  poster_path: PropTypes.string.isRequired,
+  poster_path: PropTypes.string,
 };
 
-export default MovieDetails;
+export default withRouter(MovieDetails);

@@ -1,12 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { reviewsItem, reviewsAuthor } from "./ReviewsList.module.css";
 
 
 const ReviewsList = ({ reviews = [] }) =>
   reviews.length ? (
     reviews.map(({ author, content, id }) => (
-      <li key={id}>
-        <h4>Author: {author}</h4>
+      <li key={id} className={reviewsItem}>
+        <h4 className={reviewsAuthor}>Author: {author}</h4>
         <p>{content}</p>
       </li>
     ))

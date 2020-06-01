@@ -1,0 +1,11 @@
+.reviewsItem {
+  background-color: #ffffff2a;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.reviewsAuthor {
+  margin: 0;
+  padding: 0;
+}

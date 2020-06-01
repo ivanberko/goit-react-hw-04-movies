@@ -1,6 +1,11 @@
 .movieItem {
   color: rgb(218, 56, 56);
   font-weight: 700;
+  width: 200px;
+  border: 1px solid #fff;
+  box-shadow: inset 0px 0px 8px 1px #ffffffad;
+  text-align: center;
+  margin: 20px;
 }
 
 .movieLink {
@@ -10,4 +15,5 @@
 
 .movieLink:hover {
   color: rgb(218, 56, 56);
+  box-shadow: inset 0px 0px 8px 1px #ffffffad;
 }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { fetchMovieTrending } from "../../services/api";
 import MoviesList from "../../components/MoviesList/MoviesList";
-import { titleList } from "./HomePage.module.css";
+import { titleList, listMovies } from "./HomePage.module.css";
 
 export default class HomePage extends Component {
   state = {
@@ -19,7 +19,7 @@ export default class HomePage extends Component {
     return (
       <div>
         <h2 className={titleList}>Trending today</h2>
-        <ol>
+        <ol className={listMovies}>
           <MoviesList movies={results} />
         </ol>
       </div>

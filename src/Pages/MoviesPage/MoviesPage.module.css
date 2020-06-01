@@ -1,0 +1,31 @@
+.listMovies {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.form {
+  text-align: center;
+}
+
+input {
+  width: 50%;
+  font-size: 20px;
+  padding: 4px;
+  border: none;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 8px 1px #ffffffad;
+}
+
+button {
+  background-color: rgb(218, 56, 56);
+  color: #fff;
+  font-weight: 700;
+  font-size: 20px;
+  padding: 4px 16px;
+  border: none;
+  border: 1px solid #fff;
+  box-shadow: 0px 0px 8px 1px #ffffffad;
+}

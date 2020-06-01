@@ -9,11 +9,13 @@
 
 .castPhoto {
   margin: 0 auto;
+  height: 100px;
+  background-color: #fff;
 }
 
 .castNoPhoto {
-  margin: 0;
-  vertical-align: middle;
+  margin: 0 auto;
   height: 100px;
-  line-height: 100px;
+  width: 67px;
+  background-color: #ffffff31;
 }
