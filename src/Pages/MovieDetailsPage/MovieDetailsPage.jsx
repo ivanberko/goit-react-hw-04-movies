@@ -6,15 +6,17 @@ import { formatData } from "../../utils/helpers";
 import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 
-const Cast = lazy(() =>
-  import(
-    "../../components/Cast/Cast" /* webpackChunkName: "movie-details-cast" */
-  )
+const Cast = lazy(
+  () =>
+    import(
+      "../../components/Cast/Cast"
+    ) /* webpackChunkName: "movie-details-cast" */
 );
-const Reviews = lazy(() =>
-  import(
-    "../../components/Reviews/ReviewsItem" /* webpackChunkName: "movie-details-reviews" */
-  )
+const Reviews = lazy(
+  () =>
+    import(
+      "../../components/Reviews/ReviewsItem"
+    ) /* webpackChunkName: "movie-details-reviews" */
 );
 
 export default class MovieDetailsPage extends Component {
