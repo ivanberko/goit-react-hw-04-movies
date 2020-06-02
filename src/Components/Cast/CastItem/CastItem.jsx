@@ -1,5 +1,5 @@
-import React from "./node_modules/react";
-import PropTypes from "./node_modules/prop-types";
+import React from "react";
+import PropTypes from "prop-types";
 import { getPoster } from "../../../utils/helpers";
 import { castItem, castPhoto, castNoPhoto } from "./CastItem.module.css";
 

@@ -1,5 +1,5 @@
-import React, { Suspense, lazy } from "./node_modules/react";
-import { Route, Switch, Redirect } from "./node_modules/react-router-dom";
+import React, { Suspense, lazy } from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
 
 //components
 import Loader from "../Loader/Loader";

@@ -1,4 +1,4 @@
-import React, { Component } from "./node_modules/react";
+import React, { Component } from "react";
 import { fetchMovieReviews } from "../../services/api";
 import ReviewsList from "./ReviewsItem/ReviewsList";
 import { reviewsList } from "./Reviews.module.css";

@@ -1,6 +1,6 @@
-import React from "./node_modules/react";
-import PropTypes from "./node_modules/prop-types";
-import { NavLink, withRouter } from "./node_modules/react-router-dom";
+import React from "react";
+import PropTypes from "prop-types";
+import { NavLink, withRouter } from "react-router-dom";
 import { getPoster } from "../../utils/helpers";
 import {
   movieCard,
