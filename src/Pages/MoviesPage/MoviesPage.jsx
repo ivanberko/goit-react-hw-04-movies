@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { fetchMovieSearch } from "../../services/api";
-import MoviesList from "../../components/MoviesList/MoviesList";
+import MoviesList from "../../Components/MoviesList/MoviesList";
 import { listMovies, form } from "./MoviesPage.module.css";
 import queryString from "query-string";
 

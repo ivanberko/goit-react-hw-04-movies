@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "./node_modules/react";
 import { fetchMovieCast } from "../../services/api";
 import CastItem from "./CastItem/CastItem";
 import { castList } from "./Cast.module.css";

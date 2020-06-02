@@ -3,19 +3,19 @@ import { Route, Switch } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
 import { formatData } from "../../utils/helpers";
 
-import Loader from "../../components/Loader/Loader";
-import MovieDetails from "../../components/MovieDetails/MovieDetails";
+import Loader from "../../Components/Loader/Loader";
+import MovieDetails from "../../Components/MovieDetails/MovieDetails";
 
 const Cast = lazy(
   () =>
     import(
-      "../../components/Cast/Cast"
+      "../../Components/Cast/Cast"
     ) /* webpackChunkName: "movie-details-cast" */
 );
 const Reviews = lazy(
   () =>
     import(
-      "../../components/Reviews/ReviewsItem"
+      "../../Components/Reviews/ReviewsItem"
     ) /* webpackChunkName: "movie-details-reviews" */
 );
 
