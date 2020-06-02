@@ -2,10 +2,20 @@ import React, { Component, Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
 import { formatData } from "../../utils/helpers";
+
+import Loader from "../../components/Loader/Loader";
 import MovieDetails from "../../components/MovieDetails/MovieDetails";
 
-const Cast = lazy(() => import("../../components/Cast/Cast"));
-const Reviews = lazy(() => import("../../components/Reviews/ReviewsItem"));
+const Cast = lazy(() =>
+  import(
+    "../../components/Cast/Cast" /* webpackChunkName: "movie-details-cast" */
+  )
+);
+const Reviews = lazy(() =>
+  import(
+    "../../components/Reviews/ReviewsItem" /* webpackChunkName: "movie-details-reviews" */
+  )
+);
 
 export default class MovieDetailsPage extends Component {
   state = {
@@ -17,11 +27,15 @@ export default class MovieDetailsPage extends Component {
     const { match } = this.props;
     const { state } = this.props.location;
 
+    this.setState({ location: true });
     if (state) this.setState({ from: state.from });
 
     fetchMovieDetails(match.params.movieId)
       .then(({ data }) => this.setState({ details: formatData(data) }))
-      .catch((error) => console.log(error));
+      .catch((error) => console.log(error))
+      .finally(() => {
+        this.setState({ location: false });
+      });
   }
 
   handleGoBack = () => {
@@ -41,7 +55,7 @@ export default class MovieDetailsPage extends Component {
     return (
       <div>
         {details && <MovieDetails {...details} onGoBack={this.handleGoBack} />}
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           <Switch>
             <Route path={`${match.path}/cast`} component={Cast} />
             <Route path={`${match.path}/reviews`} component={Reviews} />
