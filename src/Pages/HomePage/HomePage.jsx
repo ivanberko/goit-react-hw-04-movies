@@ -18,7 +18,7 @@ export default class HomePage extends Component {
     const { results } = this.state;
     return (
       <div>
-        <h1 className={titleList}>Trending today</h1>
+        <h2 className={titleList}>Trending today</h2>
         <ol className={listMovies}>
           <MoviesList movies={results} />
         </ol>
