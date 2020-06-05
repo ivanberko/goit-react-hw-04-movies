@@ -29,15 +29,11 @@ export default class MovieDetailsPage extends Component {
     const { match } = this.props;
     const { state } = this.props.location;
 
-    this.setState({ location: true });
     if (state) this.setState({ from: state.from });
 
     fetchMovieDetails(match.params.movieId)
       .then(({ data }) => this.setState({ details: formatData(data) }))
-      .catch((error) => console.log(error))
-      .finally(() => {
-        this.setState({ location: false });
-      });
+      .catch((error) => console.log(error));
   }
 
   handleGoBack = () => {
