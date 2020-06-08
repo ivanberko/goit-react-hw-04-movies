@@ -7,7 +7,7 @@ export default class Cast extends Component {
   state = {
     cast: [],
   };
-
+// TODO добавить поиск актеров по TV
   componentDidMount() {
     const { match } = this.props;
     fetchMovieCast(match.params.movieId)

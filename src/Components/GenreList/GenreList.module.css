@@ -1,0 +1,14 @@
+.genreLink {
+  font-size: 18px;
+  color: #fff;
+  font-weight: 400;
+  text-decoration: none;
+  transition: all 0.3s linear;
+}
+
+.genreLink:hover {
+  transform: scale(1.1);
+  text-decoration: underline;
+  color: rgb(218, 56, 56);
+}
+

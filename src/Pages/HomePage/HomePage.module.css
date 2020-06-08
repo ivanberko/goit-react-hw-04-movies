@@ -1,16 +1,42 @@
+.wrapperHomePage {
+  display: flex;
+  align-items: flex-start;
+}
+
+.listGenre {
+  padding: 10px 20px;
+  margin: 20px 0 0 40px;
+  background-color: #ffffff2c;
+  border: 1px solid rgb(218, 56, 56);
+  box-shadow: inset 0px 0px 8px 1px rgba(218, 56, 56, 0.678);
+}
+
+.articleSelectors {
+  display: flex;
+  justify-content: center;
+}
+
+.titleGenre {
+  margin: 0;
+  text-align: center;
+  letter-spacing: 1px;
+  color: rgb(218, 56, 56);
+  font-size: 22px;
+}
+
 .listMovies {
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 85%;
 }
 
 .titleList {
   font-size: 32px;
   text-align: center;
   padding-left: 10px;
-  color: #323232;
   letter-spacing: 1px;
   color: #fff;
 }

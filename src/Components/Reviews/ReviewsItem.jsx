@@ -7,6 +7,8 @@ export default class Reviews extends Component {
   state = {
     results: [],
   };
+
+// TODO добавить поиск отзывов по TV
   componentDidMount() {
     const { match } = this.props;
     fetchMovieReviews(match.params.movieId)

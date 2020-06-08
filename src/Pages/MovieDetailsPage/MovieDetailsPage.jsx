@@ -1,7 +1,6 @@
 import React, { Component, Suspense, lazy } from "react";
 import { Route, Switch } from "react-router-dom";
 import { fetchMovieDetails } from "../../services/api";
-import { formatData } from "../../utils/helpers";
 
 import Loader from "../../Components/Loader/Loader";
 import MovieDetails from "../../Components/MovieDetails/MovieDetails";
@@ -26,13 +25,17 @@ export default class MovieDetailsPage extends Component {
   };
 
   componentDidMount() {
-    const { match } = this.props;
+    const {
+      match: {
+        params: { movieId, media },
+      },
+    } = this.props;
     const { state } = this.props.location;
 
     if (state) this.setState({ from: state.from });
 
-    fetchMovieDetails(match.params.movieId)
-      .then(({ data }) => this.setState({ details: formatData(data) }))
+    fetchMovieDetails(media, movieId)
+      .then(({ data }) => this.setState({ details: { ...data } }))
       .catch((error) => console.log(error));
   }
 

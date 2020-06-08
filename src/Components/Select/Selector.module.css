@@ -1,0 +1,9 @@
+.select {
+  width: 10%;
+  color: rgb(218, 56, 56);
+  font-weight: 700;
+}
+
+.select:not(:last-child) {
+  margin-right: 4px;
+}

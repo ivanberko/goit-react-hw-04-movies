@@ -6,14 +6,19 @@
   box-shadow: inset 0px 0px 8px 1px #ffffffad;
   text-align: center;
   margin: 20px;
+  transition: transform 0.3s linear;
 }
 
 .movieLink {
   color: #fff;
   font-weight: 400;
+  transition: 0.3s linear;
 }
 
 .movieLink:hover {
   color: rgb(218, 56, 56);
-  box-shadow: inset 0px 0px 8px 1px #ffffffad;
+}
+
+.movieItem:hover {
+  transform: scale(1.1);
 }

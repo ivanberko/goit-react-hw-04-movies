@@ -11,6 +11,7 @@ import {
   activeLink,
   btnGoBack,
   titleMovie,
+  genreLink,
 } from "./MovieDetails.module.css";
 
 const MovieDetails = ({
@@ -20,15 +21,23 @@ const MovieDetails = ({
   genres,
   vote_average,
   poster_path,
+  name,
+  first_air_date,
   onGoBack,
   match,
 }) => {
   const genresList = genres.map(({ id, name }) => (
-    <span key={id} className={genreItem}>
-      {name}
-    </span>
+    <NavLink
+      to={`/${match.params.media}/${id}/${name}`}
+      key={id}
+      className={genreLink}
+    >
+      <span className={genreItem}>{name}</span>
+    </NavLink>
   ));
-  const releaseYear = new Date(Date.parse(release_date)).getFullYear();
+  const releaseYear = new Date(
+    Date.parse(release_date ? release_date : first_air_date)
+  ).getFullYear();
 
   return (
     <div>
@@ -39,7 +48,7 @@ const MovieDetails = ({
         {poster_path && <img src={getPoster(poster_path, "w300")} alt="" />}
         <div className={movieDescription}>
           <h2 className={titleMovie}>
-            {title} ({releaseYear})
+            {title ? title : name} ({releaseYear})
           </h2>
           <p>
             Rating: <b>{vote_average}/10</b>
@@ -73,8 +82,10 @@ const MovieDetails = ({
 
 MovieDetails.propTypes = {
   id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  release_date: PropTypes.string.isRequired,
+  title: PropTypes.string,
+  name: PropTypes.string,
+  release_date: PropTypes.string,
+  first_air_date: PropTypes.string,
   overview: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(
     PropTypes.shape({

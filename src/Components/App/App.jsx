@@ -18,6 +18,11 @@ const MoviesPage = lazy(() =>
     "../../Pages/MoviesPage/MoviesPage" /* webpackChunkName: "movie-page" */
   )
 );
+const MoviesGenre = lazy(() =>
+  import(
+    "../../Pages/MoviesGenre/MoviesGenre" /* webpackChunkName: "movie-page" */
+  )
+);
 
 const App = () => (
   <div>
@@ -25,7 +30,8 @@ const App = () => (
     <Suspense fallback={<Loader />}>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/movies/:movieId" component={MovieDetailsPage} />
+        <Route path="/:media/:genreId/:genre" component={MoviesGenre} />
+        <Route path="/:media/:movieId" component={MovieDetailsPage} />
         <Route path="/movies" component={MoviesPage} />
         <Redirect to="/" />
       </Switch>
