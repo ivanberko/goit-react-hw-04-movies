@@ -30,9 +30,9 @@ const App = () => (
     <Suspense fallback={<Loader />}>
       <Switch>
         <Route path="/" exact component={HomePage} />
-        <Route path="/:media/:genreId/:genre" component={MoviesGenre} />
+        <Route path="/:media/:genreId/:genre" exact component={MoviesGenre} />
         <Route path="/:media/:movieId" component={MovieDetailsPage} />
-        <Route path="/movies" component={MoviesPage} />
+        <Route path="/:media" component={MoviesPage} />
         <Redirect to="/" />
       </Switch>
     </Suspense>

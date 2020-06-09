@@ -58,8 +58,8 @@ export default class MovieDetailsPage extends Component {
         {details && <MovieDetails {...details} onGoBack={this.handleGoBack} />}
         <Suspense fallback={<Loader />}>
           <Switch>
-            <Route path={`${match.path}/cast`} component={Cast} />
-            <Route path={`${match.path}/reviews`} component={Reviews} />
+            <Route path={`${match.path}/cast/info`} component={Cast} />
+            <Route path={`${match.path}/reviews/info`} component={Reviews} />
           </Switch>
         </Suspense>
       </div>

@@ -46,13 +46,24 @@
   color: #fff;
   font-weight: 700;
   font-size: 22px;
+  border-bottom: 2px solid transparent;
+  transition: all .3s linear;
 }
+
 .addInfoLink:not(:last-child) {
   margin-right: 20px;
 }
 
+.addInfoLink:hover {
+  border-bottom: 2px solid rgb(218, 56, 56);
+}
+
 .activeLink {
   color: rgb(218, 56, 56);
+}
+
+.activeLink:hover {
+  border-bottom: 2px solid transparent;
 }
 
 .btnGoBack {

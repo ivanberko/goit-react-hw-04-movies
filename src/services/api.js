@@ -15,13 +15,13 @@ export const fetchMovieDetails = (media, movieId) => {
   return axios.get(`${baseUrl}${requestParams}`);
 };
 
-export const fetchMovieCast = (movieId) => {
-  const requestParams = `movie/${movieId}/credits?api_key=${apiKey}`;
+export const fetchMovieCast = (media, movieId) => {
+  const requestParams = `${media}/${movieId}/credits?api_key=${apiKey}`;
   return axios.get(`${baseUrl}${requestParams}`);
 };
 
-export const fetchMovieReviews = (movieId) => {
-  const requestParams = `movie/${movieId}/reviews?api_key=${apiKey}`;
+export const fetchMovieReviews = (media, movieId) => {
+  const requestParams = `${media}/${movieId}/reviews?api_key=${apiKey}`;
   return axios.get(`${baseUrl}${requestParams}`);
 };
 

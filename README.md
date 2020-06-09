@@ -1,2 +1,2 @@
 # goit-react-hw-04-movies
-https://react-movies-netlify.netlify.app/
+https://ivan-berk-react-movies.netlify.app/

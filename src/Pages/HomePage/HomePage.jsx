@@ -15,7 +15,7 @@ import {
   titleGenre,
   articleSelectors,
 } from "./HomePage.module.css";
-// import queryString from "query-string";
+import queryString from "query-string";
 
 export default class HomePage extends Component {
   state = {
@@ -29,9 +29,18 @@ export default class HomePage extends Component {
   componentDidMount() {
     const { mediaType, timeInterval } = this.state;
 
-    fetchMovieTrending(mediaType, timeInterval)
-      .then((results) => this.setState({ results }))
-      .catch((error) => console.log(error));
+    const { media, time } = queryString.parse(this.props.location.search);
+
+    if (media) {
+      fetchMovieTrending(media, time)
+        .then((results) => this.setState({ results }))
+        .catch((error) => console.log(error));
+      this.setState({ mediaType: media, timeInterval: time });
+    } else {
+      fetchMovieTrending(mediaType, timeInterval)
+        .then((results) => this.setState({ results }))
+        .catch((error) => console.log(error));
+    }
 
     fetchMovieGenresList("movie")
       .then(({ data: { genres } }) => this.setState({ genresMovies: genres }))
@@ -64,6 +73,10 @@ export default class HomePage extends Component {
       fetchMovieTrending(mediaType, timeInterval)
         .then((results) => this.setState({ results }))
         .catch((error) => console.log(error));
+      this.props.history.push({
+        ...this.props.location,
+        search: `?media=${mediaType}&time=${timeInterval}`,
+      });
     }
   }
 

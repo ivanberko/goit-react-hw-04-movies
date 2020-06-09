@@ -62,14 +62,14 @@ const MovieDetails = ({
       <section className={addInfo}>
         <h3>Additional information</h3>
         <NavLink
-          to={`${match.url}/cast`}
+          to={`${match.url}/cast/info`}
           className={addInfoLink}
           activeClassName={activeLink}
         >
           Cast
         </NavLink>
         <NavLink
-          to={`${match.url}/reviews`}
+          to={`${match.url}/reviews/info`}
           className={addInfoLink}
           activeClassName={activeLink}
         >

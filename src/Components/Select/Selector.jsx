@@ -12,4 +12,10 @@ const Selector = ({ options, onChange, value }) => (
   />
 );
 
+Selector.propsType = {
+  options: PropTypes.array.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.object.isRequired,
+};
+
 export default Selector;

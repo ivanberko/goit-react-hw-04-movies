@@ -8,10 +8,10 @@ export default class Reviews extends Component {
     results: [],
   };
 
-// TODO добавить поиск отзывов по TV
+  // TODO добавить поиск отзывов по TV
   componentDidMount() {
-    const { match } = this.props;
-    fetchMovieReviews(match.params.movieId)
+    const { movieId, media } = this.props.match.params;
+    fetchMovieReviews(media, movieId)
       .then(({ data: { results } }) => this.setState({ results }))
       .catch((error) => console.log(error));
   }
