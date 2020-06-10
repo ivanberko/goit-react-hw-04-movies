@@ -35,13 +35,28 @@ export default class HomePage extends Component {
     const { media, time } = queryString.parse(this.props.location.search);
 
     if (media && time) {
-      this.setState({ mediaType: media, timeInterval: time });
-    } else {
+      if (media !== mediaType || time !== timeInterval) {
+        this.setState({ mediaType: media, timeInterval: time });
+        this.getMovieGenresList();
+        return;
+      }
+
       fetchMovieTrending(mediaType, timeInterval, page)
         .then((results) => this.setState({ results }))
         .catch((error) => console.log(error));
+
+      this.getMovieGenresList();
+      return;
     }
 
+    fetchMovieTrending(mediaType, timeInterval, page)
+      .then((results) => this.setState({ results }))
+      .catch((error) => console.log(error));
+
+    this.getMovieGenresList();
+  }
+
+  getMovieGenresList = () => {
     fetchMovieGenresList("movie")
       .then(({ data: { genres } }) => this.setState({ genresMovies: genres }))
       .catch((error) => console.log(error));
@@ -49,7 +64,7 @@ export default class HomePage extends Component {
     fetchMovieGenresList("tv")
       .then(({ data: { genres } }) => this.setState({ genresTv: genres }))
       .catch((error) => console.log(error));
-  }
+  };
 
   handleChangeMediaType = (opt) => {
     const { mediaType } = this.state;
