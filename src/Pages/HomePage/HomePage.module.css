@@ -9,6 +9,7 @@
   background-color: #ffffff2c;
   border: 1px solid rgb(218, 56, 56);
   box-shadow: inset 0px 0px 8px 1px rgba(218, 56, 56, 0.678);
+  border-radius: 5px;
 }
 
 .articleSelectors {
@@ -24,13 +25,16 @@
   font-size: 22px;
 }
 
+.articleListMovies {
+  width: 85%;
+}
+
 .listMovies {
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 85%;
 }
 
 .titleList {

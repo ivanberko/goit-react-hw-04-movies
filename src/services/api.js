@@ -3,8 +3,8 @@ import axios from "axios";
 const baseUrl = "https://api.themoviedb.org/3/";
 const apiKey = "c8d82f6f08cefeda0f8738249710e644";
 
-export const fetchMovieTrending = (media, timeInterval) => {
-  const requestParams = `trending/${media}/${timeInterval}?api_key=${apiKey}`;
+export const fetchMovieTrending = (media, timeInterval, page) => {
+  const requestParams = `trending/${media}/${timeInterval}?api_key=${apiKey}&page=${page}`;
   return axios.get(`${baseUrl}${requestParams}`).then((res) => {
     return res.data.results;
   });

@@ -1,12 +1,10 @@
 import React, { Component } from "react";
+import queryString from "query-string";
 import { fetchMovieTrending, fetchMovieGenresList } from "../../services/api";
 import {
   optionsMedia,
   optionsTimeInterval,
 } from "../../utils/selectCategories";
-import MoviesList from "../../Components/MoviesList/MoviesList";
-import GenreList from "../../Components/GenreList/GenreList";
-import Selector from "../../Components/Select/Selector";
 import {
   titleList,
   listMovies,
@@ -14,12 +12,18 @@ import {
   wrapperHomePage,
   titleGenre,
   articleSelectors,
+  articleListMovies,
 } from "./HomePage.module.css";
-import queryString from "query-string";
+//components
+import MoviesList from "../../Components/MoviesList/MoviesList";
+import GenreList from "../../Components/GenreList/GenreList";
+import Selector from "../../Components/Select/Selector";
+import Button from "../../Components/Button/Button";
 
 export default class HomePage extends Component {
   state = {
     results: [],
+    page: 1,
     genresMovies: [],
     genresTv: [],
     mediaType: "all",
@@ -27,17 +31,13 @@ export default class HomePage extends Component {
   };
 
   componentDidMount() {
-    const { mediaType, timeInterval } = this.state;
-
+    const { mediaType, timeInterval, page } = this.state;
     const { media, time } = queryString.parse(this.props.location.search);
 
-    if (media) {
-      fetchMovieTrending(media, time)
-        .then((results) => this.setState({ results }))
-        .catch((error) => console.log(error));
+    if (media && time) {
       this.setState({ mediaType: media, timeInterval: time });
     } else {
-      fetchMovieTrending(mediaType, timeInterval)
+      fetchMovieTrending(mediaType, timeInterval, page)
         .then((results) => this.setState({ results }))
         .catch((error) => console.log(error));
     }
@@ -52,26 +52,49 @@ export default class HomePage extends Component {
   }
 
   handleChangeMediaType = (opt) => {
+    const { mediaType } = this.state;
+    if (opt.value === mediaType) return;
     if (opt) {
       this.setState({ mediaType: opt.value });
+      this.setState({ results: [] });
+      this.setState({ page: 1 });
     }
   };
 
   handleChangeTimeInterval = (opt) => {
+    const { timeInterval } = this.state;
+    if (opt.value === timeInterval) return;
     if (opt) {
       this.setState({ timeInterval: opt.value });
+      this.setState({ results: [] });
+      this.setState({ page: 1 });
     }
   };
 
+  handleLoadMore = () => {
+    this.setState((prevState) => ({ page: prevState.page + 1 }));
+  };
+
   componentDidUpdate(prevProps, prevState) {
-    const { mediaType, timeInterval } = this.state;
+    const { mediaType, timeInterval, page } = this.state;
     const {
       mediaType: prevMediaType,
       timeInterval: prevTimeInterval,
+      page: prevPage,
     } = prevState;
-    if (mediaType !== prevMediaType || timeInterval !== prevTimeInterval) {
-      fetchMovieTrending(mediaType, timeInterval)
-        .then((results) => this.setState({ results }))
+    if (
+      mediaType !== prevMediaType ||
+      timeInterval !== prevTimeInterval ||
+      page !== prevPage
+    ) {
+      fetchMovieTrending(mediaType, timeInterval, page)
+        .then((results) =>
+          !results.length
+            ? this.setState({ results })
+            : this.setState((prevState) => ({
+                results: [...prevState.results, ...results],
+              }))
+        )
         .catch((error) => console.log(error));
       this.props.history.push({
         ...this.props.location,
@@ -123,9 +146,12 @@ export default class HomePage extends Component {
               <GenreList genres={genresTv} media={"tv"} />
             </ul>
           </aside>
-          <ul className={listMovies}>
-            <MoviesList movies={results} />
-          </ul>
+          <article className={articleListMovies}>
+            <ul className={listMovies}>
+              <MoviesList movies={results} />
+            </ul>
+            {results.length > 0 && <Button onLoadMore={this.handleLoadMore} />}
+          </article>
         </section>
       </div>
     );
