@@ -5,6 +5,9 @@ import {
   optionsMedia,
   optionsTimeInterval,
 } from "../../utils/selectCategories";
+import { scrollTo, scrollToUp } from "../../utils/helpers";
+
+//Styles
 import {
   titleList,
   listMovies,
@@ -13,16 +16,19 @@ import {
   titleGenre,
   articleSelectors,
   articleListMovies,
+  genresBox
 } from "./HomePage.module.css";
+
 //components
 import MoviesList from "../../Components/MoviesList/MoviesList";
 import GenreList from "../../Components/GenreList/GenreList";
 import Selector from "../../Components/Select/Selector";
 import Button from "../../Components/Button/Button";
+import ArrowUpward from "../../Components/Icon/Icon";
 
 export default class HomePage extends Component {
   state = {
-    results: [],
+    moviesGallery: [],
     page: 1,
     genresMovies: [],
     genresTv: [],
@@ -42,7 +48,7 @@ export default class HomePage extends Component {
       }
 
       fetchMovieTrending(mediaType, timeInterval, page)
-        .then((results) => this.setState({ results }))
+        .then((results) => this.setState({ moviesGallery: results }))
         .catch((error) => console.log(error));
 
       this.getMovieGenresList();
@@ -50,7 +56,7 @@ export default class HomePage extends Component {
     }
 
     fetchMovieTrending(mediaType, timeInterval, page)
-      .then((results) => this.setState({ results }))
+      .then((results) => this.setState({ moviesGallery: results }))
       .catch((error) => console.log(error));
 
     this.getMovieGenresList();
@@ -71,7 +77,7 @@ export default class HomePage extends Component {
     if (opt.value === mediaType) return;
     if (opt) {
       this.setState({ mediaType: opt.value });
-      this.setState({ results: [] });
+      this.setState({ moviesGallery: [] });
       this.setState({ page: 1 });
     }
   };
@@ -81,7 +87,7 @@ export default class HomePage extends Component {
     if (opt.value === timeInterval) return;
     if (opt) {
       this.setState({ timeInterval: opt.value });
-      this.setState({ results: [] });
+      this.setState({ moviesGallery: [] });
       this.setState({ page: 1 });
     }
   };
@@ -90,8 +96,12 @@ export default class HomePage extends Component {
     this.setState((prevState) => ({ page: prevState.page + 1 }));
   };
 
+  onClickUpward = () => {
+    scrollToUp();
+  };
+
   componentDidUpdate(prevProps, prevState) {
-    const { mediaType, timeInterval, page } = this.state;
+    const { mediaType, timeInterval, page, moviesGallery } = this.state;
     const {
       mediaType: prevMediaType,
       timeInterval: prevTimeInterval,
@@ -103,14 +113,19 @@ export default class HomePage extends Component {
       page !== prevPage
     ) {
       fetchMovieTrending(mediaType, timeInterval, page)
-        .then((results) =>
-          !results.length
-            ? this.setState({ results })
+        .then((results) => {
+          !moviesGallery.length
+            ? this.setState({ moviesGallery: results })
             : this.setState((prevState) => ({
-                results: [...prevState.results, ...results],
-              }))
-        )
-        .catch((error) => console.log(error));
+                moviesGallery: [...prevState.moviesGallery, ...results],
+              }));
+        })
+        .catch((error) => console.log(error))
+        .finally(() => {
+          if (moviesGallery.length) {
+            scrollTo();
+          }
+        });
       this.props.history.push({
         ...this.props.location,
         search: `?media=${mediaType}&time=${timeInterval}`,
@@ -120,7 +135,7 @@ export default class HomePage extends Component {
 
   render() {
     const {
-      results,
+      moviesGallery,
       genresMovies,
       genresTv,
       mediaType,
@@ -137,6 +152,7 @@ export default class HomePage extends Component {
 
     return (
       <div>
+        <ArrowUpward onClickUpward={this.onClickUpward} />
         <h1 className={titleList}>Trending</h1>
         <article className={articleSelectors}>
           <Selector
@@ -151,7 +167,7 @@ export default class HomePage extends Component {
           />
         </article>
         <section className={wrapperHomePage}>
-          <aside>
+          <aside className={genresBox}>
             <ul className={listGenre}>
               <h3 className={titleGenre}>Movie genres</h3>
               <GenreList genres={genresMovies} media={"movie"} />
@@ -163,9 +179,11 @@ export default class HomePage extends Component {
           </aside>
           <article className={articleListMovies}>
             <ul className={listMovies}>
-              <MoviesList movies={results} />
+              <MoviesList movies={moviesGallery} />
             </ul>
-            {results.length > 0 && <Button onLoadMore={this.handleLoadMore} />}
+            {moviesGallery.length > 0 && (
+              <Button onLoadMore={this.handleLoadMore} />
+            )}
           </article>
         </section>
       </div>

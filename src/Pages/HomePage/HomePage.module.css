@@ -5,11 +5,12 @@
 
 .listGenre {
   padding: 10px 20px;
-  margin: 20px 0 0 40px;
+  margin-left: 40px;
   background-color: #ffffff2c;
-  border: 1px solid rgb(218, 56, 56);
+  border: 1px solid #da3838;
   box-shadow: inset 0px 0px 8px 1px rgba(218, 56, 56, 0.678);
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .articleSelectors {
@@ -22,11 +23,15 @@
   text-align: center;
   letter-spacing: 1px;
   color: rgb(218, 56, 56);
-  font-size: 22px;
+  font-size: 26px;
+}
+
+.genresBox{
+  width: 18%;
 }
 
 .articleListMovies {
-  width: 85%;
+  width: 79%;
 }
 
 .listMovies {

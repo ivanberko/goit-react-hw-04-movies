@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { NavLink, withRouter } from "react-router-dom";
-import { movieItem, movieLink } from "./MoviesList.module.css";
+import { movieItem, movieLink, noImg} from "./MoviesList.module.css";
 import { getPoster } from "../../utils/helpers";
 
 const MoviesList = ({
@@ -20,7 +20,15 @@ const MoviesList = ({
         }}
         className={movieLink}
       >
-        {poster_path && <img src={getPoster(poster_path, "w200")} alt="" />}
+        {poster_path ? (
+          <img src={getPoster(poster_path, "w300")} alt="" />
+        ) : (
+          <img
+            src={getPoster("wwemzKWzjKYJFfCeiB57q3r4Bcm.svg", "w300")}
+            alt=""
+            className={noImg}
+          />
+        )}
         <p>{title ? title : name}</p>
       </NavLink>
     </li>

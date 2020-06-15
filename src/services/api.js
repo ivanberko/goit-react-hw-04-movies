@@ -25,8 +25,8 @@ export const fetchMovieReviews = (media, movieId) => {
   return axios.get(`${baseUrl}${requestParams}`);
 };
 
-export const fetchMovieSearch = (query) => {
-  const requestParams = `search/movie?api_key=${apiKey}&query=${query}`;
+export const fetchMovieSearch = (query, page) => {
+  const requestParams = `search/movie?api_key=${apiKey}&page=${page}&query=${query}`;
   return axios.get(`${baseUrl}${requestParams}`);
 };
 
@@ -35,7 +35,7 @@ export const fetchMovieGenresList = (genre) => {
   return axios.get(`${baseUrl}${requestParams}`);
 };
 
-export const fetchMovieListByGenre = (media, genreId) => {
-  const requestParams = `discover/${media}?api_key=${apiKey}&with_genres=${genreId}`;
+export const fetchMovieListByGenre = (media, genreId, page) => {
+  const requestParams = `discover/${media}?api_key=${apiKey}&page=${page}&with_genres=${genreId}`;
   return axios.get(`${baseUrl}${requestParams}`);
 };

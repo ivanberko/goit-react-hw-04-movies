@@ -4,10 +4,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  width: 96%;
 }
 
 .titleGenre {
   margin: 0;
   text-align: center;
   letter-spacing: 1px;
+  margin-bottom: 40px;
 }

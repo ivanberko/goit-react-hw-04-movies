@@ -2,6 +2,7 @@
   width: 160px;
   color: rgb(218, 56, 56);
   font-weight: 700;
+  margin-bottom: 30px;
 }
 
 .select:not(:last-child) {
