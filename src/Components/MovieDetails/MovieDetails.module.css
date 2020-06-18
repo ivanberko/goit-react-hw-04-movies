@@ -8,8 +8,25 @@
 .movieDescription {
   margin-left: 10px;
 }
+
 .titleMovie {
   font-size: 34px;
+  margin: 0;
+  margin-bottom: 10px;
+}
+
+.subTitleMovie {
+  margin: 0;
+  font-style: italic;
+}
+
+.rowGenres{
+  display: flex;
+  align-items: center;
+}
+
+.titleGenres {
+  margin-right: 20px;
 }
 
 .genreItem {
@@ -47,7 +64,7 @@
   font-weight: 700;
   font-size: 22px;
   border-bottom: 2px solid transparent;
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 
 .addInfoLink:not(:last-child) {

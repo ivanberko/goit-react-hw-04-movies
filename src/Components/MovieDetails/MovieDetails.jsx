@@ -12,6 +12,9 @@ import {
   btnGoBack,
   titleMovie,
   genreLink,
+  subTitleMovie,
+  rowGenres,
+  titleGenres
 } from "./MovieDetails.module.css";
 
 const MovieDetails = ({
@@ -23,6 +26,7 @@ const MovieDetails = ({
   poster_path,
   name,
   first_air_date,
+  tagline,
   onGoBack,
   match,
 }) => {
@@ -50,13 +54,16 @@ const MovieDetails = ({
           <h2 className={titleMovie}>
             {title ? title : name} ({releaseYear})
           </h2>
+          {tagline && <h4 className={subTitleMovie}>"{tagline}"</h4>}
           <p>
             Rating: <b>{vote_average}/10</b>
           </p>
           <h3>Overview</h3>
           <p>{overview}</p>
-          <h3>Genres</h3>
-          <div>{genresList}</div>
+          <div className={rowGenres}>
+            <h3 className={titleGenres}>Genres: </h3>
+            <div>{genresList}</div>
+          </div>
         </div>
       </section>
       <section className={addInfo}>
