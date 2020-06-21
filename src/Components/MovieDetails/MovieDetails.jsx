@@ -14,7 +14,8 @@ import {
   genreLink,
   subTitleMovie,
   rowGenres,
-  titleGenres
+  titleGenres,
+  maxRating
 } from "./MovieDetails.module.css";
 
 const MovieDetails = ({
@@ -56,7 +57,7 @@ const MovieDetails = ({
           </h2>
           {tagline && <h4 className={subTitleMovie}>"{tagline}"</h4>}
           <p>
-            Rating: <b>{vote_average}/10</b>
+            Rating: <b>{vote_average}</b> <span className={maxRating}>/10</span>
           </p>
           <h3>Overview</h3>
           <p>{overview}</p>

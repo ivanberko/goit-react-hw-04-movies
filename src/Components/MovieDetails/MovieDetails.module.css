@@ -1,3 +1,7 @@
+.maxRating {
+  font-size: 10px;
+}
+
 .movieCard {
   padding: 20px;
   display: flex;
